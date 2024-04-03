@@ -9,7 +9,16 @@ equation = StringVar()
 
 def press(num):
     equation.set(equation.get()+ str(num))
-    print(equation.get())
+
+def equalpress():
+    try:
+        total = str(eval(equation.get()))
+        equation.set(total)
+    except:
+        equation.set('error')
+
+def clear():
+    equation.set('')
 
 expression_entry = Entry(root,textvariable = equation)
 expression_entry.grid(row=0,columnspan=4,sticky='nswe')
@@ -42,28 +51,28 @@ btn2.grid(row=3,column=1,sticky='nswe')
 btn3 = Button(root,text = '3',fg='#fff',background='#666', command=lambda:press(3))
 btn3.grid(row=3,column=2,sticky='nswe')
 
-btn0 = Button(root,text = '0',fg='#fff',background='#666', command=lambda:press(7))
+btn0 = Button(root,text = '0',fg='#fff',background='#666', command=lambda:press(0))
 btn0.grid(row=4,column=0,sticky='nswe',columnspan=2)
 
-decimal = Button(root,text = '.',fg='#fff',background='#666', command=lambda:press(7))
+decimal = Button(root,text = '.',fg='#fff',background='#666', command=lambda:press('.'))
 decimal.grid(row=4,column=2,sticky='nswe')
 
-plus = Button(root,text='+',fg='#fff',bg='#fe9727')
+plus = Button(root,text='+',fg='#fff',bg='#fe9727',command=lambda:press('+'))
 plus.grid(row=1,column=3,sticky='nswe')
 
-minus = Button(root,text='-',fg='#fff',bg='#fe9727')
+minus = Button(root,text='-',fg='#fff',bg='#fe9727',command=lambda:press('-'))
 minus.grid(row=2,column=3,sticky='nswe')
 
-multiply = Button(root,text='*',fg='#fff',bg='#fe9727')
+multiply = Button(root,text='*',fg='#fff',bg='#fe9727',command=lambda:press('*'))
 multiply.grid(row=3,column=3,sticky='nswe')
 
-divide = Button(root,text='/',fg='#fff',bg='#fe9727')
+divide = Button(root,text='/',fg='#fff',bg='#fe9727',command=lambda:press('/'))
 divide.grid(row=4,column=3,sticky='nswe')
 
-equal = Button(root,text='=',fg='#fff',bg='#fe9727')
+equal = Button(root,text='=',fg='#fff',bg='#fe9727',command=equalpress)
 equal.grid(row=5,column=3,sticky='nswe')
 
-clear = Button(root,text='clear',fg='#fff',bg='#999')
+clear = Button(root,text='clear',fg='#fff',bg='#999',command=clear)
 clear.grid(row=5,column=2,sticky='nswe')
 
 
